@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B0A0E">
+<title>Chamber IV · The Chronos Compass — Sarvesh Jaat</title>
+<meta name="description" content="Chamber IV of Sarvesh Jaat's portfolio: his personality, work ethic, languages and interests. Magnetise the compass to unlock the four-sided obelisk.">
+<link rel="canonical" href="https://sj-portfolio-inky.vercel.app/chamber-4.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Chrono-Relic Vault">
+<meta property="og:title" content="Chamber IV · The Chronos Compass — Sarvesh Jaat">
+<meta property="og:description" content="Chamber IV of Sarvesh Jaat's portfolio: his personality, work ethic, languages and interests. Magnetise the compass to unlock the four-sided obelisk.">
+<meta property="og:url" content="https://sj-portfolio-inky.vercel.app/chamber-4.html">
+<meta property="og:image" content="https://sj-portfolio-inky.vercel.app/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Sarvesh Jaat, B.Tech CSE student at IIIT Raichur">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Chamber IV · The Chronos Compass — Sarvesh Jaat">
+<meta name="twitter:description" content="Chamber IV of Sarvesh Jaat's portfolio: his personality, work ethic, languages and interests. Magnetise the compass to unlock the four-sided obelisk.">
+<meta name="twitter:image" content="https://sj-portfolio-inky.vercel.app/og-image.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&amp;family=Rajdhani:wght@500;600;700&amp;display=swap">
+<link rel="stylesheet" href="vault.css">
+<link rel="stylesheet" href="p4.css">
+</head>
+<body>
+<div class="vault p4" id="vault">
+
+  <!-- order matters: nN, nE, nS, nW are adjacent siblings for the "all four" selector -->
+  <input type="checkbox" id="nN" class="in-nN">
+  <input type="checkbox" id="nE" class="in-nE">
+  <input type="checkbox" id="nS" class="in-nS">
+  <input type="checkbox" id="nW" class="in-nW">
+  <input type="checkbox" id="seal" class="puzzle-lock in-seal">
+  <input type="radio" name="cam" id="c0" class="in-c0" checked>
+  <input type="radio" name="cam" id="c90" class="in-c90">
+  <input type="radio" name="cam" id="c180" class="in-c180">
+  <input type="radio" name="cam" id="c270" class="in-c270">
+
+  <div class="dust" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <div class="hud">
+    <span class="chip">Chamber IV / V</span>
+    <span class="pips" aria-hidden="true"><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></span>
+    <span class="clock"><span class="state-run">Seals in <b class="count"></b>s</span><span class="state-ok">Seal broken</span></span>
+    <div class="hourglass" aria-hidden="true"><i></i></div>
+  </div>
+
+  <div class="door-wrap top" aria-hidden="true"><div class="door"></div></div>
+  <div class="door-wrap bot" aria-hidden="true"><div class="door"></div></div>
+
+  <main class="stage">
+    <header class="head">
+      <p class="eyebrow">The Chrono-Relic Vault · Chamber IV</p>
+      <h1>The Chronos Compass</h1>
+      <p class="sub">About Me, Languages &amp; Interests</p>
+      <p class="mission"><span class="m-run">Magnetise N, E, S and W — then seal the core</span><span class="m-done">Obelisk risen — choose a camera angle</span></p>
+    </header>
+
+    <div class="arena">
+      <!-- LOCK: the compass -->
+      <div class="compass fadeout">
+        <div class="dial"><i class="dial-ring"></i><i class="needle"></i></div>
+        <label class="anc aN" for="nN" aria-label="Magnetise North"><b>N</b></label>
+        <label class="anc aE" for="nE" aria-label="Magnetise East"><b>E</b></label>
+        <label class="anc aS" for="nS" aria-label="Magnetise South"><b>S</b></label>
+        <label class="anc aW" for="nW" aria-label="Magnetise West"><b>W</b></label>
+        <label class="seal-lbl" for="seal" aria-label="Seal the core"><b>SEAL</b></label>
+        <ul class="tease" aria-live="polite">
+          <li class="tN"><b>N</b><span class="lk">locked</span><span class="op">Personality</span></li>
+          <li class="tE"><b>E</b><span class="lk">locked</span><span class="op">Work ethic</span></li>
+          <li class="tS"><b>S</b><span class="lk">locked</span><span class="op">Languages</span></li>
+          <li class="tW"><b>W</b><span class="lk">locked</span><span class="op">Vision</span></li>
+        </ul>
+      </div>
+
+      <!-- REVEAL: 4-sided rotating obelisk -->
+      <div class="ob-scene swapin">
+        <div class="embers" aria-hidden="true"><i style="--x:4%;--t:7s;--w:-1s;--z:5px"></i><i style="--x:14%;--t:9s;--w:-4s;--z:4px"></i><i style="--x:26%;--t:8s;--w:-2s;--z:6px"></i><i style="--x:38%;--t:10s;--w:-6s;--z:3px"></i><i style="--x:50%;--t:7s;--w:-3s;--z:5px"></i><i style="--x:62%;--t:9s;--w:-7s;--z:4px"></i><i style="--x:74%;--t:8s;--w:-5s;--z:6px"></i><i style="--x:86%;--t:10s;--w:-2s;--z:3px"></i><i style="--x:94%;--t:7s;--w:-6s;--z:5px"></i></div>
+
+        <!-- tap the obelisk to turn it to the next face (pure CSS: only the label for the next radio is shown) -->
+        <label class="nxt nx0" for="c90" aria-label="Turn obelisk to the East face"></label>
+        <label class="nxt nx1" for="c180" aria-label="Turn obelisk to the South face"></label>
+        <label class="nxt nx2" for="c270" aria-label="Turn obelisk to the West face"></label>
+        <label class="nxt nx3" for="c0" aria-label="Turn obelisk to the North face"></label>
+        <div class="ob-float">
+          <div class="obelisk">
+            <div class="cap cp0"></div><div class="cap cp1"></div><div class="cap cp2"></div><div class="cap cp3"></div>
+            <section class="side s0">
+              <b class="dir">N</b><span class="ico" aria-hidden="true">🧠</span><p class="k">North Face · Personality</p>
+              <h2>About Me</h2>
+              <p class="big">Ambivert · Optimistic</p>
+              <ul><li>Effective both as an independent contributor and as part of a team</li><li>Approaches challenges as opportunities to improve, not as setbacks</li></ul>
+            </section>
+            <section class="side s1">
+              <b class="dir">E</b><span class="ico" aria-hidden="true">🎯</span><p class="k">East Face · Work Ethic</p>
+              <h2>Dedicated &amp; Punctual</h2>
+              <p class="big">Planner &amp; Leader</p>
+              <ul><li>Fully committed to the projects I take on</li><li>Consistently delivers work on schedule</li><li>Plans ahead and supports teams in reaching their goals</li></ul>
+            </section>
+            <section class="side s2">
+              <b class="dir">S</b><span class="ico" aria-hidden="true">🌍</span><p class="k">South Face · Languages</p>
+              <h2>Languages Known</h2>
+              <p class="big">German A1</p>
+              <ol><li>English</li><li>Hindi</li><li>Marathi</li><li>Marwari</li><li>German (A1)</li></ol>
+            </section>
+            <section class="side s3">
+              <b class="dir">W</b><span class="ico" aria-hidden="true">🔭</span><p class="k">West Face · Vision &amp; Interests</p>
+              <h2>Visionary</h2>
+              <p class="big">Continuous Learner</p>
+              <ul><li>Focused on the big picture, long-term growth and new ideas</li><li>Keen to build new skills in technology and management</li><li>Passionate about travel</li></ul>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="cams swapin" aria-label="Camera angle">
+      <label class="cb cb0" for="c0">N · 0°</label>
+      <label class="cb cb90" for="c90">E · 90°</label>
+      <label class="cb cb180" for="c180">S · 180°</label>
+      <label class="cb cb270" for="c270">W · 270°</label>
+    </nav>
+    <p class="camcap swapin" aria-live="polite"><span class="t0">N · Personality — who I am</span><span class="t1">E · Work Ethic — how I work</span><span class="t2">S · Languages — how I communicate</span><span class="t3">W · Vision — where I’m headed</span></p>
+    <p class="rot-hint swapin">Tap the obelisk to turn it to the next face, or use the buttons above</p>
+    <!-- REVEAL: soundtrack card. Swap the two links below for exact track URLs if you like -->
+    <section class="nowplay glass reveal" aria-label="Soundtrack">
+      <div class="np-in">
+        <div class="np-vinyl" aria-hidden="true"><span class="np-disc"></span></div>
+        <div class="np-info">
+          <p class="k">Soundtrack · Always on in the background</p>
+          <h2>The Nights</h2>
+          <p class="who">Avicii</p>
+          <div class="np-eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="np-links">
+            <a href="https://open.spotify.com/search/The%20Nights%20Avicii" target="_blank" rel="noopener">Listen on Spotify</a>
+            <a href="https://www.youtube.com/results?search_query=Avicii+The+Nights" target="_blank" rel="noopener">YouTube</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <a class="portal" href="sanctum.html">
+    <span class="arch" aria-hidden="true"></span>
+    <span class="ptxt"><small>Final ascent unlocked</small><b>Enter the Sanctum</b></span>
+    <span class="arrow" aria-hidden="true">▸</span>
+  </a>
+
+  <div class="shock" aria-hidden="true"></div>
+
+  <section class="loss" aria-live="assertive">
+    <div class="loss-box">
+      <p class="eyebrow">The doors have met</p>
+      <h2>TIMELINE SEALED<br><span>RELIC LOST</span></h2>
+      <p>The compass spun out of control before it was magnetised.</p>
+      <a class="rewind" href="chamber-4.html">⟲ Rewind time</a>
+    </div>
+  </section>
+</div>
+</body>
+</html>

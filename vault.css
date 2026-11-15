@@ -1,0 +1,256 @@
+/* =====================================================================
+   THE CHRONO-RELIC VAULT — shared engine (pure CSS3, zero JavaScript)
+   Doors · hourglass · countdown · shockwave · portal · loss screen
+   ===================================================================== */
+@property --sec{syntax:"<integer>";inherits:false;initial-value:30}
+
+:root{
+  --obs:#0B0A0E; --slate:#16131D; --slate2:#211c2b;
+  --gold:#FFB703; --gold2:#FFD166; --bronze:#b57c1e; --bronze2:#d9a24a;
+  --em:#06D6A0; --mag:#EF476F; --ivory:#f6ecd2;
+  --goldgrad:linear-gradient(135deg,#ffd166,#b57c1e);
+  --disp:'Cinzel','Trajan Pro','Palatino Linotype',Georgia,serif;
+  --body:'Rajdhani','Segoe UI',system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+  --gutter:clamp(14px,4vw,32px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;background:var(--obs)}
+body{background:var(--obs);color:var(--ivory);font-family:var(--body);font-size:16px;line-height:1.4;
+  min-height:100vh;min-height:100dvh;-webkit-tap-highlight-color:transparent;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+label{cursor:pointer;-webkit-user-select:none;user-select:none;touch-action:manipulation}
+h1,h2,h3,p{margin:0}
+
+/* ---------- the vault shell ---------- */
+.vault{position:relative;min-height:100vh;min-height:100dvh;isolation:isolate;overflow-x:clip;
+  background:
+    radial-gradient(120% 70% at 50% 0%,rgba(181,124,30,.30),transparent 62%),
+    radial-gradient(90% 60% at 50% 112%,rgba(255,183,3,.16),transparent 60%),
+    repeating-linear-gradient(45deg,rgba(255,255,255,.014) 0 2px,transparent 2px 6px),
+    repeating-linear-gradient(-45deg,rgba(0,0,0,.18) 0 2px,transparent 2px 7px),
+    linear-gradient(180deg,var(--slate),var(--obs) 85%)}
+/* puzzle inputs live directly inside .vault; invisible but state-bearing */
+.vault>input{position:fixed;left:0;top:0;width:1px;height:1px;margin:0;opacity:0;pointer-events:none}
+
+.dust{position:fixed;inset:0;z-index:1;pointer-events:none;
+  background-image:
+    radial-gradient(2px 2px at 12% 22%,rgba(255,209,102,.7),transparent 60%),
+    radial-gradient(1.5px 1.5px at 33% 68%,rgba(255,183,3,.6),transparent 60%),
+    radial-gradient(2px 2px at 58% 35%,rgba(255,209,102,.55),transparent 60%),
+    radial-gradient(1.5px 1.5px at 77% 82%,rgba(255,183,3,.6),transparent 60%),
+    radial-gradient(2px 2px at 90% 18%,rgba(255,209,102,.5),transparent 60%),
+    radial-gradient(1.5px 1.5px at 45% 92%,rgba(255,209,102,.5),transparent 60%);
+  background-size:100% 100%;animation:drift 22s linear infinite alternate}
+@keyframes drift{to{transform:translateY(-28px) translateX(14px)}}
+
+/* ---------- stage / typography ---------- */
+.stage{position:relative;z-index:10;display:flex;flex-direction:column;align-items:center;
+  width:100%;max-width:1100px;margin:0 auto;
+  padding:calc(70px + env(safe-area-inset-top)) var(--gutter) calc(150px + env(safe-area-inset-bottom))}
+.head{text-align:center;margin-bottom:clamp(8px,2vh,16px)}
+.eyebrow{font-family:var(--disp);letter-spacing:.3em;text-transform:uppercase;font-size:clamp(10px,2.7vw,12px);color:var(--bronze2)}
+h1{font-family:var(--disp);font-weight:800;font-size:clamp(26px,7.4vw,52px);line-height:1.06;margin:.22em 0 .1em;
+  background:linear-gradient(180deg,#fff2c4,#FFD166 45%,#b57c1e);-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 4px 18px rgba(255,183,3,.25))}
+.sub{font-size:clamp(14px,3.8vw,18px);letter-spacing:.08em;color:#cdbb92;text-transform:uppercase}
+
+.mission{margin:clamp(8px,1.6vh,14px) auto 0;padding:9px 18px;border-radius:999px;text-align:center;max-width:100%;
+  font-weight:600;font-size:clamp(13px,3.7vw,16px);letter-spacing:.04em;color:var(--gold2);
+  background:rgba(255,183,3,.08);border:1px solid rgba(255,209,102,.4);
+  -webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px)}
+.mission .m-done{display:none}
+.vault:has(.puzzle-lock:checked) .mission{color:var(--em);border-color:rgba(6,214,160,.6);background:rgba(6,214,160,.08)}
+.vault:has(.puzzle-lock:checked) .mission .m-run{display:none}
+.vault:has(.puzzle-lock:checked) .mission .m-done{display:inline}
+
+/* ---------- glassmorphism + metallic gold edge ---------- */
+.glass{position:relative;border-radius:18px;
+  background:linear-gradient(150deg,rgba(255,209,102,.14),rgba(22,19,29,.66) 55%);
+  -webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);
+  box-shadow:0 20px 50px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.12)}
+.glass::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;background:var(--goldgrad);pointer-events:none;
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
+
+/* ---------- HUD + hourglass + countdown ---------- */
+.hud{position:fixed;left:0;right:0;top:0;z-index:60;pointer-events:none;
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:calc(16px + env(safe-area-inset-top)) var(--gutter) 10px;
+  font-family:var(--disp);font-size:clamp(10px,2.8vw,12px);letter-spacing:.16em;text-transform:uppercase;color:var(--gold2);
+  background:linear-gradient(180deg,rgba(11,10,14,.88),rgba(11,10,14,0))}
+.chip{white-space:nowrap}
+.pips{display:flex;gap:6px}
+.pips i{width:9px;height:9px;border-radius:50%;border:1px solid var(--bronze2);background:transparent}
+.pips i.on{background:var(--gold);box-shadow:0 0 10px var(--gold)}
+.pips i.done{background:var(--em);border-color:var(--em)}
+.clock{white-space:nowrap;animation:clockRed 30s steps(1) forwards,beat 1s ease-in-out 20s infinite}
+.clock .state-ok{display:none}
+.count{display:inline-block;min-width:2ch;text-align:right;counter-reset:sec var(--sec);animation:tick 30s steps(30,end) forwards}
+.count::before{content:counter(sec)}
+@keyframes tick{from{--sec:30}to{--sec:0}}
+@keyframes clockRed{0%{color:#FFD166}66%{color:#EF476F}}
+@keyframes beat{50%{transform:scale(1.14)}}
+
+.hourglass{position:absolute;left:0;right:0;top:0;height:8px;background:rgba(255,255,255,.08);overflow:hidden}
+.hourglass i{display:block;width:100%;height:100%;transform-origin:left center;background:#FFD166;
+  box-shadow:0 0 16px var(--gold);animation:drain 30s linear forwards}
+@keyframes drain{0%{transform:scaleX(1);background:#FFD166}65%{background:#FFB703}100%{transform:scaleX(0);background:#EF476F}}
+
+.vignette{position:fixed;inset:0;z-index:35;pointer-events:none;opacity:0;
+  background:radial-gradient(ellipse at center,transparent 50%,rgba(239,71,111,.42));animation:vignette 30s linear forwards}
+@keyframes vignette{0%,62%{opacity:0}100%{opacity:1}}
+
+/* ---------- THE CLOSING VAULT SHUTTER ---------- */
+.door-wrap{position:fixed;left:0;right:0;height:44vh;z-index:40;pointer-events:none;
+  transition:transform 1.5s cubic-bezier(.7,0,.2,1)}
+.door-wrap.top{top:0}
+.door-wrap.bot{bottom:0}
+.door{position:absolute;inset:0;
+  background:
+    repeating-linear-gradient(90deg,rgba(0,0,0,.28) 0 2px,transparent 2px 64px),
+    linear-gradient(180deg,rgba(255,209,102,.10),transparent 45%),
+    linear-gradient(180deg,#2b2433,#15111b)}
+.door-wrap.top .door{animation:vaultSeal 30s linear forwards;border-bottom:3px solid #b57c1e}
+.door-wrap.bot .door{animation:vaultSealUp 30s linear forwards;border-top:3px solid #b57c1e;
+  background:
+    repeating-linear-gradient(90deg,rgba(0,0,0,.28) 0 2px,transparent 2px 64px),
+    linear-gradient(0deg,rgba(255,209,102,.10),transparent 45%),
+    linear-gradient(0deg,#2b2433,#15111b)}
+.door::after{content:"";position:absolute;left:0;right:0;height:26px;
+  background:repeating-linear-gradient(135deg,rgba(255,183,3,.55) 0 12px,rgba(11,10,14,.9) 12px 24px);
+  box-shadow:0 0 28px rgba(255,183,3,.55)}
+.door-wrap.top .door::after{bottom:0}
+.door-wrap.bot .door::after{top:0}
+@keyframes vaultSeal{from{transform:translateY(-100%)}to{transform:translateY(0)}}
+@keyframes vaultSealUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+
+/* ---------- THE SAVE MECHANIC ---------- */
+.vault:has(.puzzle-lock:checked) .door,
+.vault:has(.puzzle-lock:checked) .hourglass i,
+.vault:has(.puzzle-lock:checked) .count,
+.vault:has(.puzzle-lock:checked) .clock,
+.vault:has(.puzzle-lock:checked) .vignette{animation-play-state:paused}
+.vault:has(.puzzle-lock:checked) .door-wrap.top{transform:translateY(-112%)}
+.vault:has(.puzzle-lock:checked) .door-wrap.bot{transform:translateY(112%)}
+.vault:has(.puzzle-lock:checked) .vignette{opacity:0;transition:opacity .6s}
+.vault:has(.puzzle-lock:checked) .clock .state-run{display:none}
+.vault:has(.puzzle-lock:checked) .clock .state-ok{display:inline;color:var(--em)}
+.vault:has(.puzzle-lock:checked) .clock{animation:none;color:var(--em)}
+.vault:has(.puzzle-lock:checked) .hourglass i{box-shadow:0 0 16px var(--em)}
+
+/* golden shockwave */
+.shock{position:fixed;inset:0;z-index:80;pointer-events:none;display:none;overflow:hidden}
+.shock::before{content:"";position:absolute;left:50%;top:50%;width:170vmax;height:170vmax;border-radius:50%;
+  transform:translate(-50%,-50%) scale(0);opacity:0;
+  background:radial-gradient(circle,transparent 52%,rgba(255,244,201,.95) 56%,rgba(255,183,3,.55) 62%,rgba(255,183,3,.0) 70%)}
+.shock::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(255,209,102,.85),rgba(255,183,3,.2) 60%,transparent);opacity:0}
+.vault:has(.puzzle-lock:checked) .shock{display:block}
+.vault:has(.puzzle-lock:checked) .shock::before{animation:shockwave 1.5s cubic-bezier(.15,.7,.3,1) forwards}
+.vault:has(.puzzle-lock:checked) .shock::after{animation:flash 1.1s ease-out forwards}
+@keyframes shockwave{0%{transform:translate(-50%,-50%) scale(0);opacity:1}100%{transform:translate(-50%,-50%) scale(1);opacity:0}}
+@keyframes flash{0%{opacity:.95}100%{opacity:0}}
+
+/* portal gate to the next chamber */
+.portal{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom));z-index:70;
+  display:flex;align-items:center;gap:12px;min-height:58px;max-width:calc(100vw - 2*var(--gutter));
+  padding:8px 22px 8px 12px;border-radius:30px 30px 14px 14px;color:#1a1204;white-space:nowrap;
+  background:linear-gradient(135deg,#ffe9a6,#FFD166 40%,#e29a10);
+  border:2px solid #fff3c4;box-shadow:0 0 0 0 rgba(255,183,3,.7),0 14px 40px rgba(0,0,0,.6);
+  opacity:0;visibility:hidden;transform:translate(-50%,36px) scale(.92);
+  transition:opacity .7s 1.1s,transform .8s 1.1s cubic-bezier(.2,1.4,.4,1),visibility 0s 1.1s}
+.vault:has(.puzzle-lock:checked) .portal{opacity:1;visibility:visible;transform:translate(-50%,0) scale(1);animation:portalPulse 1.8s ease-in-out 2s infinite}
+.portal:hover,.portal:focus-visible{filter:brightness(1.08)}
+.portal .arch{flex:none;width:34px;height:42px;border-radius:17px 17px 3px 3px;background:radial-gradient(ellipse at 50% 80%,#fff8dc,#FFB703 50%,#6b4300);box-shadow:inset 0 0 0 3px #1a1204}
+.portal .ptxt{display:flex;flex-direction:column;line-height:1.1;min-width:0}
+.portal small{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;opacity:.75}
+.portal b{font-family:var(--disp);font-size:clamp(14px,4.2vw,19px);letter-spacing:.04em;overflow:hidden;text-overflow:ellipsis}
+.portal .arrow{font-size:22px;font-weight:700}
+@keyframes portalPulse{0%,100%{box-shadow:0 0 0 0 rgba(255,183,3,.7),0 14px 40px rgba(0,0,0,.6)}50%{box-shadow:0 0 0 14px rgba(255,183,3,0),0 14px 40px rgba(0,0,0,.6)}}
+
+/* ---------- THE LOSS SCREEN ---------- */
+.loss{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:var(--gutter);text-align:center;
+  background:radial-gradient(circle at 50% 38%,rgba(239,71,111,.45),rgba(11,10,14,.97) 68%);
+  opacity:0;visibility:hidden;animation:lossIn .7s ease 30s forwards}
+.vault:has(.puzzle-lock:checked) .loss{display:none}
+@keyframes lossIn{from{opacity:0;visibility:visible}to{opacity:1;visibility:visible}}
+.loss-box{max-width:520px}
+.loss .eyebrow{color:#ff9db3}
+.loss h2{font-family:var(--disp);font-weight:800;font-size:clamp(28px,8.5vw,56px);line-height:1.05;margin:.3em 0;color:#ffd9e0;text-shadow:0 0 30px rgba(239,71,111,.8)}
+.loss h2 span{color:var(--mag)}
+.loss p{color:#e4b9c3;font-size:clamp(14px,3.8vw,17px)}
+.rewind{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;margin-top:22px;padding:12px 28px;border-radius:999px;
+  font-family:var(--disp);font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#1a1204;
+  background:linear-gradient(135deg,#ffe9a6,#FFD166 45%,#e29a10);box-shadow:0 0 30px rgba(255,183,3,.45)}
+.rewind:hover{filter:brightness(1.1)}
+
+/* ---------- reveal helpers ---------- */
+.reveal{display:none}
+.vault:has(.puzzle-lock:checked) .reveal{display:block;animation:revealIn 1s ease .9s both}
+@keyframes revealIn{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+.swapin{opacity:0;visibility:hidden;transition:opacity 1s .9s,visibility 0s .9s}
+.vault:has(.puzzle-lock:checked) .swapin{opacity:1;visibility:visible}
+.vault:has(.puzzle-lock:checked) .fadeout{animation:fadeOut 1.1s ease forwards}
+@keyframes fadeOut{to{opacity:0;visibility:hidden;transform:rotateX(70deg) scale(1.2)}}
+.vault:has(.puzzle-lock:checked) .collapse{animation:collapse 1s ease forwards;overflow:hidden}
+@keyframes collapse{0%{opacity:1;max-height:1400px}55%{opacity:0;max-height:1400px}100%{opacity:0;max-height:0;visibility:hidden;margin:0;padding:0}}
+
+@keyframes glowPulse{0%,100%{filter:drop-shadow(0 0 8px rgba(255,183,3,.45))}50%{filter:drop-shadow(0 0 22px rgba(255,183,3,.95))}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+@media (max-width:420px){
+  .pips{display:none}
+  .portal{padding-right:16px;gap:9px}
+}
+@media (max-height:520px) and (orientation:landscape){
+  .door-wrap{height:40vh}
+  .stage{padding-top:calc(56px + env(safe-area-inset-top))}
+}
+
+/* ---------- animated tables (shared) ---------- */
+.tw{overflow-x:clip;padding:2px 8px 6px}
+.vt{width:100%;max-width:100%;border-collapse:separate;border-spacing:0 10px;font-size:clamp(13px,3.6vw,15.5px)}
+.vt thead th{position:relative;overflow:hidden;padding:10px 14px;text-align:left;white-space:nowrap;
+  font-family:var(--disp);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#1a1204;
+  background:linear-gradient(135deg,#ffe9a6,#FFD166 45%,#e29a10)}
+.vt thead th:first-child{border-radius:12px 0 0 12px}.vt thead th:last-child{border-radius:0 12px 12px 0}
+.vt thead th::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.7) 50%,transparent 70%);transform:translateX(-130%);animation:shimmer 3.4s ease-in-out 1.8s infinite}
+@keyframes shimmer{to{transform:translateX(130%)}}
+.vt tbody tr{animation:rowIn .8s cubic-bezier(.2,1.2,.4,1) calc(1.1s + var(--i,0)*.16s) backwards;transition:transform .3s}
+@keyframes rowIn{from{opacity:0;transform:translateY(22px) rotateX(40deg)}to{opacity:1;transform:none}}
+.vt tbody td{padding:12px 14px;vertical-align:middle;color:#f1e6c6;font-weight:600;
+  background:linear-gradient(135deg,rgba(255,209,102,.16),rgba(6,214,160,.07));
+  border-top:1px solid rgba(255,209,102,.38);border-bottom:1px solid rgba(255,209,102,.38);transition:background .3s,box-shadow .3s,border-color .3s}
+.vt tbody td:first-child{border-left:1px solid rgba(255,209,102,.38);border-radius:12px 0 0 12px;color:var(--gold2);font-family:var(--disp);font-weight:800;letter-spacing:.03em;white-space:nowrap}
+.vt tbody td:last-child{border-right:1px solid rgba(255,209,102,.38);border-radius:0 12px 12px 0}
+.vt tbody tr:hover{transform:translateY(-2px) scale(1.01)}
+.vt tbody tr:hover td{background:linear-gradient(135deg,rgba(255,209,102,.34),rgba(6,214,160,.18));border-color:var(--gold2);box-shadow:0 10px 26px rgba(255,183,3,.28)}
+.meter{display:block;height:7px;margin-top:6px;border-radius:4px;background:rgba(255,255,255,.12);overflow:hidden;min-width:70px}
+.meter i{display:block;height:100%;width:var(--p);transform-origin:left;border-radius:4px;background:linear-gradient(90deg,var(--em),var(--gold2));box-shadow:0 0 10px var(--em);
+  animation:fillBar 1.5s cubic-bezier(.2,.8,.2,1) calc(1.7s + var(--i,0)*.16s) backwards}
+@keyframes fillBar{from{transform:scaleX(0)}}
+.live{font-style:normal;color:var(--em);white-space:nowrap}
+.live::before{content:"";display:inline-block;width:9px;height:9px;margin-right:7px;border-radius:50%;background:var(--em);box-shadow:0 0 10px var(--em);animation:beat 1.4s ease-in-out infinite}
+.tag{display:inline-block;margin:3px 7px 3px 0;padding:3px 12px;border-radius:999px;border:1px solid rgba(255,209,102,.55);background:rgba(255,183,3,.12);
+  animation:tagPop .55s cubic-bezier(.3,1.6,.5,1) calc(1.5s + var(--i,0)*.16s + var(--j,0)*.07s) backwards;transition:transform .2s,background .2s,box-shadow .2s}
+.tag:hover{transform:translateY(-2px) scale(1.07);background:rgba(255,183,3,.32);box-shadow:0 0 14px rgba(255,183,3,.6)}
+.tag.hot{border-color:var(--em);background:rgba(6,214,160,.16);color:#d8fff0}
+@keyframes tagPop{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:none}}
+@media (max-width:480px){
+  .vt{font-size:12.5px;border-spacing:0 8px}
+  .vt thead th{padding:9px 7px;letter-spacing:.06em;font-size:10px}
+  .vt tbody td{padding:10px 7px}
+  .vt tbody td:first-child{letter-spacing:0}
+  .meter{min-width:44px}
+  .edu,.skilltbl{padding-left:10px;padding-right:10px}
+}
+.vt{table-layout:auto}
+@media (max-width:360px){
+  .vt{font-size:11.5px}
+  .vt thead th{padding:8px 4px;letter-spacing:0;font-size:9.5px}
+  .vt tbody td{padding:9px 4px}
+  .vt tbody td:first-child{white-space:normal}
+  .meter{min-width:28px}
+  .tw{padding:2px 2px 6px}
+  .edu,.skilltbl{padding-left:8px;padding-right:8px}
+}

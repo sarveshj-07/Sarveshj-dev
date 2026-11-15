@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B0A0E">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>Chamber III · The Resonance Amphitheatre — Sarvesh Jaat</title>
+<meta name="description" content="Chamber III of Sarvesh Jaat's portfolio: his acoustic signal differentiation project using MFCC, DTW and SVM, and his work in the Deeplabs IIIT Raichur PR team.">
+<link rel="canonical" href="https://sj-portfolio-inky.vercel.app/chamber-3.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Chrono-Relic Vault">
+<meta property="og:title" content="Chamber III · The Resonance Amphitheatre — Sarvesh Jaat">
+<meta property="og:description" content="Chamber III of Sarvesh Jaat's portfolio: his acoustic signal differentiation project using MFCC, DTW and SVM, and his work in the Deeplabs IIIT Raichur PR team.">
+<meta property="og:url" content="https://sj-portfolio-inky.vercel.app/chamber-3.html">
+<meta property="og:image" content="https://sj-portfolio-inky.vercel.app/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Sarvesh Jaat, B.Tech CSE student at IIIT Raichur">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Chamber III · The Resonance Amphitheatre — Sarvesh Jaat">
+<meta name="twitter:description" content="Chamber III of Sarvesh Jaat's portfolio: his acoustic signal differentiation project using MFCC, DTW and SVM, and his work in the Deeplabs IIIT Raichur PR team.">
+<meta name="twitter:image" content="https://sj-portfolio-inky.vercel.app/og-image.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&amp;family=Rajdhani:wght@500;600;700&amp;display=swap">
+<link rel="stylesheet" href="vault.css">
+<link rel="stylesheet" href="p3.css">
+</head>
+<body>
+<div class="vault p3" id="vault">
+
+  <input type="checkbox" id="lock3" class="puzzle-lock in-lock3">
+  <input type="radio" name="chord" id="chA" class="in-chA" checked>
+  <input type="radio" name="chord" id="chB" class="in-chB">
+
+  <div class="dust" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <div class="hud">
+    <span class="chip">Chamber III / V</span>
+    <span class="pips" aria-hidden="true"><i class="done"></i><i class="done"></i><i class="on"></i><i></i><i></i></span>
+    <span class="clock"><span class="state-run">Seals in <b class="count"></b>s</span><span class="state-ok">Seal broken</span></span>
+    <div class="hourglass" aria-hidden="true"><i></i></div>
+  </div>
+
+  <div class="door-wrap top" aria-hidden="true"><div class="door"></div></div>
+  <div class="door-wrap bot" aria-hidden="true"><div class="door"></div></div>
+
+  <main class="stage">
+    <header class="head">
+      <p class="eyebrow">The Chrono-Relic Vault · Chamber III</p>
+      <h1>The Resonance Amphitheatre</h1>
+      <p class="sub">Acoustic Project &amp; Deeplabs PR</p>
+      <p class="mission"><span class="m-run">Tap the lock while the ball glows green</span><span class="m-done">Chamber stabilised — strum the harp</span></p>
+    </header>
+
+    <!-- LOCK: slow resonator ball + big forgiving harmonic-lock window -->
+    <section class="resonator glass collapse">
+      <div class="wavefield" aria-hidden="true">
+        <svg class="wave" viewBox="0 0 400 60" preserveAspectRatio="none"><path d="M0 30 Q25 0 50 30 T100 30 T150 30 T200 30 T250 30 T300 30 T350 30 T400 30 T450 30 T500 30 T550 30 T600 30 T650 30 T700 30 T750 30 T800 30" /></svg>
+      </div>
+      <div class="track" aria-hidden="true">
+        <i class="zone"></i>
+        <i class="ball"></i>
+      </div>
+      <div class="lockbox">
+        <span class="lockface" aria-hidden="true">HARMONIC LOCK</span>
+        <label class="hit" for="lock3" aria-label="Harmonic Lock">TAP NOW!</label>
+      </div>
+      <p class="tip">The ball crosses slowly. While it is inside the green zone the lock lights up for about 2½ seconds — tap it.</p>
+    </section>
+
+    <!-- REVEAL: harp + holographic blueprint stage -->
+    <section class="amph reveal">
+      <div class="harp" role="group" aria-label="Golden harp">
+        <label class="str sA" for="chA" style="--h:100%" aria-label="String 1"><i></i></label>
+        <label class="str sA" for="chA" style="--h:94%" aria-label="String 2"><i></i></label>
+        <label class="str sA" for="chA" style="--h:88%" aria-label="String 3"><i></i></label>
+        <label class="str sA" for="chA" style="--h:82%" aria-label="String 4"><i></i></label>
+        <label class="str sA" for="chA" style="--h:76%" aria-label="String 5"><i></i></label>
+        <label class="str sA" for="chA" style="--h:70%" aria-label="String 6"><i></i></label>
+        <label class="str sB" for="chB" style="--h:64%" aria-label="String 7"><i></i></label>
+        <label class="str sB" for="chB" style="--h:58%" aria-label="String 8"><i></i></label>
+        <label class="str sB" for="chB" style="--h:52%" aria-label="String 9"><i></i></label>
+        <label class="str sB" for="chB" style="--h:46%" aria-label="String 10"><i></i></label>
+        <label class="str sB" for="chB" style="--h:40%" aria-label="String 11"><i></i></label>
+        <label class="str sB" for="chB" style="--h:34%" aria-label="String 12"><i></i></label>
+      </div>
+      <p class="harp-tip">Tap or hover the strings to switch chords</p>
+      <p class="harp-key"><span class="ka">Strings 1–6 · Chord A</span><span class="kb">Strings 7–12 · Chord B</span></p>
+
+      <div class="holo">
+        <!-- Chord A -->
+        <div class="hA">
+          <p class="k">Harmonic Chord A</p>
+          <h2>Acoustic Signal Differentiation System</h2>
+          <div class="plates">
+            <div class="plate" style="--k:0"><i>01</i><h3>Lossless WAV Capture</h3><p>Uncompressed audio in — nothing discarded</p></div>
+            <div class="plate" style="--k:1"><i>02</i><h3>MFCC &amp; LPC Feature Extraction</h3><p>Spectral and vocal-tract features per frame</p></div>
+            <div class="plate" style="--k:2"><i>03</i><h3>Dynamic Time Warping (DTW)</h3><p>Aligns utterances of different speed</p></div>
+            <div class="plate" style="--k:3"><i>04</i><h3>SVM Classification</h3><p>Separates phonetically similar speech</p></div>
+          </div>
+        </div>
+        <!-- Chord B -->
+        <div class="hB">
+          <p class="k">Harmonic Chord B</p>
+          <h2>Deeplabs IIIT Raichur — PR Team</h2>
+          <div class="plates">
+            <div class="plate" style="--k:0"><i>01</i><h3>Managing Team Member</h3><p>Part of the managing team of the PR team</p></div>
+            <div class="plate" style="--k:1"><i>02</i><h3>PR Event</h3><p>Organised the PR event for Deeplabs</p></div>
+            <div class="plate" style="--k:2"><i>03</i><h3>Hackathon</h3><p>Organised the Deeplabs hackathon</p></div>
+            <div class="plate" style="--k:3"><i>04</i><h3>Leadership &amp; Time Management</h3><p>Coordinating teams, balancing many tasks</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <a class="portal" href="chamber-4.html">
+    <span class="arch" aria-hidden="true"></span>
+    <span class="ptxt"><small>Chamber IV unlocked</small><b>Enter the vault tunnel</b></span>
+    <span class="arrow" aria-hidden="true">▸</span>
+  </a>
+
+  <div class="shock" aria-hidden="true"></div>
+
+  <section class="loss" aria-live="assertive">
+    <div class="loss-box">
+      <p class="eyebrow">The doors have met</p>
+      <h2>TIMELINE SEALED<br><span>RELIC LOST</span></h2>
+      <p>The resonance faded before the harmonic lock was struck.</p>
+      <a class="rewind" href="chamber-3.html">⟲ Rewind time</a>
+    </div>
+  </section>
+</div>
+</body>
+</html>

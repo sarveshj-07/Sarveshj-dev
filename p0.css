@@ -1,0 +1,53 @@
+/* Intro — The Chrono-Relic Vault */
+.p0 .stage{padding-top:calc(46px + env(safe-area-inset-top));padding-bottom:calc(60px + env(safe-area-inset-bottom));gap:clamp(18px,4vw,30px)}
+
+/* gate doors open once on load */
+.gate{position:fixed;left:0;right:0;height:50vh;z-index:50;pointer-events:none;background:linear-gradient(180deg,#2b2433,#15111b);transition:none;
+  animation:gateOpen 1.6s cubic-bezier(.7,0,.2,1) .3s forwards}
+.gate.t{top:0;border-bottom:3px solid #b57c1e}
+.gate.b{bottom:0;border-top:3px solid #b57c1e;--d:1;animation-name:gateOpenB}
+@keyframes gateOpen{to{transform:translateY(-102%)}}
+@keyframes gateOpenB{to{transform:translateY(102%)}}
+
+.p0 .head{animation:fadeUp 1s ease 1.5s backwards}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}}
+
+/* signature */
+.sig{width:min(86vw,420px);margin:6px auto 0;display:block;overflow:visible}
+.sig text{font-family:'Great Vibes','Brush Script MT',cursive;font-size:76px;fill:transparent;stroke:var(--gold2);stroke-width:1.2;stroke-linejoin:round;
+  stroke-dasharray:1500;stroke-dashoffset:1500;filter:drop-shadow(0 0 8px rgba(255,183,3,.5));
+  animation:sigDraw 3.4s ease-in-out 2s forwards,sigFill 1s ease 5s forwards}
+.sig .under{fill:none;stroke:var(--gold2);stroke-width:2;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;animation:sigDraw 1.2s ease 5.2s forwards}
+@keyframes sigDraw{to{stroke-dashoffset:0}}
+@keyframes sigFill{to{fill:var(--gold2);stroke-width:0}}
+.by{margin-top:-6px;text-align:center;font-family:var(--disp);letter-spacing:.3em;text-transform:uppercase;font-size:11px;color:var(--bronze2);animation:fadeUp 1s ease 2s backwards}
+
+/* how it works */
+.how{width:min(94vw,820px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:14px;animation:fadeUp 1s ease 2.3s backwards}
+.how .glass{padding:18px}
+.how h2,.map h2{font-family:var(--disp);font-weight:800;font-size:clamp(17px,4.6vw,20px);color:var(--gold2);margin-bottom:6px}
+.how p{color:#e0d3ad;font-size:clamp(14.5px,3.8vw,16.5px);font-weight:600}
+.how .ic{display:grid;place-items:center;width:42px;height:42px;margin-bottom:10px;border-radius:50%;font-size:20px;border:1.5px solid rgba(255,209,102,.6);background:radial-gradient(circle at 35% 30%,rgba(255,243,196,.3),rgba(255,183,3,.1))}
+.tip{width:min(94vw,820px);text-align:center;font-size:clamp(13px,3.5vw,15px);color:#bfae86;animation:fadeUp 1s ease 2.5s backwards}
+.tip b{color:var(--em)}
+
+/* chamber map: a real sequence, so numbered */
+.map{width:min(94vw,820px);padding:clamp(16px,4vw,24px);animation:fadeUp 1s ease 2.7s backwards}
+.map ol{list-style:none;margin:12px 0 0;padding:0;display:grid;gap:8px;counter-reset:c}
+.map li{counter-increment:c;display:flex;align-items:center;gap:14px;padding:10px 14px;border-radius:12px;border:1px solid rgba(255,209,102,.25);background:rgba(255,183,3,.06);font-weight:600;font-size:clamp(14px,3.8vw,16.5px);color:#e9dcb8}
+.map li::before{content:counter(c,upper-roman);flex:none;width:38px;font-family:var(--disp);font-weight:800;color:var(--em)}
+.map li b{font-family:var(--disp);color:var(--gold2);letter-spacing:.03em}
+.map li span{color:#a8987a;margin-left:auto;text-align:right;font-size:.92em}
+@media (max-width:480px){.map li{flex-wrap:wrap;gap:2px 10px}.map li span{margin-left:48px;text-align:left;width:100%}}
+
+/* begin button */
+.begin{display:inline-flex;align-items:center;gap:14px;min-height:60px;padding:14px 30px;border-radius:999px;color:#1a1204;border:2px solid #fff3c4;
+  font-family:var(--disp);font-weight:800;letter-spacing:.1em;text-transform:uppercase;font-size:clamp(14px,4vw,17px);
+  background:linear-gradient(135deg,#ffe9a6,#FFD166 45%,#e29a10);animation:fadeUp 1s ease 2.9s backwards,portalPulse 1.8s ease-in-out 4s infinite;transition:transform .2s}
+.begin:hover{transform:translateY(-3px) scale(1.03)}
+.begin:focus-visible{outline:3px solid #fff;outline-offset:4px}
+
+@media (prefers-reduced-motion:reduce){
+  .gate{display:none}.p0 *{animation:none!important}
+  .sig text{stroke-dashoffset:0;fill:var(--gold2);stroke-width:0}.sig .under{stroke-dashoffset:0}
+}

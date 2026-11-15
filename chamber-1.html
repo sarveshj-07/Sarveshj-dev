@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B0A0E">
+<title>Chamber I · The Astrolabe of Origin — Sarvesh Jaat</title>
+<meta name="description" content="Chamber I of Sarvesh Jaat's portfolio: B.Tech CSE student at IIIT Raichur, JEE Main 95.1 percentile, school scores and where he comes from. Align the astrolabe.">
+<link rel="canonical" href="https://sj-portfolio-inky.vercel.app/chamber-1.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Chrono-Relic Vault">
+<meta property="og:title" content="Chamber I · The Astrolabe of Origin — Sarvesh Jaat">
+<meta property="og:description" content="Chamber I of Sarvesh Jaat's portfolio: B.Tech CSE student at IIIT Raichur, JEE Main 95.1 percentile, school scores and where he comes from. Align the astrolabe.">
+<meta property="og:url" content="https://sj-portfolio-inky.vercel.app/chamber-1.html">
+<meta property="og:image" content="https://sj-portfolio-inky.vercel.app/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Sarvesh Jaat, B.Tech CSE student at IIIT Raichur">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Chamber I · The Astrolabe of Origin — Sarvesh Jaat">
+<meta name="twitter:description" content="Chamber I of Sarvesh Jaat's portfolio: B.Tech CSE student at IIIT Raichur, JEE Main 95.1 percentile, school scores and where he comes from. Align the astrolabe.">
+<meta name="twitter:image" content="https://sj-portfolio-inky.vercel.app/og-image.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&amp;family=Rajdhani:wght@500;600;700&amp;display=swap">
+<link rel="stylesheet" href="vault.css">
+<link rel="stylesheet" href="p1.css">
+</head>
+<body>
+<div class="vault p1" id="vault">
+
+  <!-- state inputs (siblings of .stage so ~ selectors work) -->
+  <input type="checkbox" id="r1" class="lock-in in-r1">
+  <input type="checkbox" id="r2" class="lock-in in-r2">
+  <input type="checkbox" id="r3" class="lock-in in-r3 puzzle-lock">
+  <input type="radio" name="orb" id="oS" class="in-oS" checked>
+  <input type="radio" name="orb" id="o1" class="in-o1">
+  <input type="radio" name="orb" id="o2" class="in-o2">
+  <input type="radio" name="orb" id="o3" class="in-o3">
+
+  <div class="dust" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <div class="hud">
+    <span class="chip">Chamber I / V</span>
+    <span class="pips" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i></span>
+    <span class="clock"><span class="state-run">Seals in <b class="count"></b>s</span><span class="state-ok">Seal broken</span></span>
+    <div class="hourglass" aria-hidden="true"><i></i></div>
+  </div>
+
+  <div class="door-wrap top" aria-hidden="true"><div class="door"></div></div>
+  <div class="door-wrap bot" aria-hidden="true"><div class="door"></div></div>
+
+  <main class="stage">
+    <header class="head">
+      <p class="eyebrow">The Chrono-Relic Vault · Chamber I</p>
+      <h1>The Astrolabe of Origin</h1>
+      <p class="sub">Identity &amp; Education</p>
+      <p class="mission"><span class="m-run">Click the 3 ring locks, outer → inner, before the vault seals</span><span class="m-done">Astrolabe aligned — hover or tap a sphere</span></p>
+    </header>
+
+    <div class="scene">
+      <!-- LOCK: the astrolabe -->
+      <div class="astro fadeout">
+        <span class="mark" aria-hidden="true"></span>
+        <label class="ring ring1" for="r1" aria-label="Lock outer ring"></label>
+        <label class="ring ring2" for="r2" aria-label="Lock middle ring"></label>
+        <label class="ring ring3" for="r3" aria-label="Lock inner ring"></label>
+        <span class="core" aria-hidden="true"></span>
+      </div>
+
+      <!-- REVEAL: the floating orrery -->
+      <div class="orrery swapin">
+        <div class="plane">
+          <i class="halo"></i>
+          <div class="orbit ob1"><div class="ox"><div class="oy"><label class="planet hv pl1" for="o1" aria-label="Orbit 1 – Origin"><b>I</b></label></div></div></div>
+          <div class="orbit ob2"><div class="ox"><div class="oy"><label class="planet hv pl2" for="o2" aria-label="Orbit 2 – Primary Engine"><b>II</b></label></div></div></div>
+          <div class="orbit ob3"><div class="ox"><div class="oy"><label class="planet hv pl3" for="o3" aria-label="Orbit 3 – Entrance Exam"><b>III</b></label></div></div></div>
+          <label class="sun hv pls" for="oS" aria-label="Core Sun"><b>SJ</b></label>
+        </div>
+      </div>
+    </div>
+
+    <p class="lamps" aria-hidden="true"><i class="l1"></i><i class="l2"></i><i class="l3"></i></p>
+
+    <section class="lens glass swapin" aria-live="polite">
+      <div class="info iS">
+        <p class="k">Core Sun</p>
+        <h2>Sarvesh Jaat</h2>
+        <p class="v">ID · CS26B1050</p>
+      </div>
+      <div class="info i1">
+        <p class="k">Orbit I · Origin</p>
+        <h2>Rajasthan, India</h2>
+        <p class="v">Born 25 October 2007</p>
+        <p class="v">Where it all began</p>
+      </div>
+      <div class="info i2">
+        <p class="k">Orbit II · Primary Engine</p>
+        <h2>B.Tech · Computer Science &amp; Engineering</h2>
+        <p class="v">IIIT Raichur · 2026 – Present</p>
+      </div>
+      <div class="info i3">
+        <p class="k">Orbit III · Entrance Exam</p>
+        <h2>JEE Main · 95.1 Percentile</h2>
+        <p class="v">Year 2026</p>
+      </div>
+      <p class="hint">Hover a sphere to inspect it · on touch, tap a sphere (tap the sun to resume orbit)</p>
+    </section>
+    <!-- PORTRAIT: put your picture file next to index.html and change the src below (default: photo.jpg) -->
+    <section class="portrait reveal" aria-label="Portrait">
+      <div class="pt-wrap">
+        <div class="pt-frame">
+          <span class="pt-orbit" aria-hidden="true"></span>
+          <div class="pt-arch" role="img" aria-label="Portrait of Sarvesh Jaat">
+            <span class="pt-mono" aria-hidden="true">SJ</span>
+            <img class="pt-img" src="portfolio.jpeg" alt="" width="260" height="325">
+            <span class="pt-shine" aria-hidden="true"></span>
+          </div>
+          <i class="pt-gem g1" aria-hidden="true"></i><i class="pt-gem g2" aria-hidden="true"></i>
+        </div>
+        <div class="pt-plate glass">
+          <p class="k">The Keeper of the Vault</p>
+          <h2>Sarvesh Jaat</h2>
+          <p class="v">B.Tech CSE · IIIT Raichur</p>
+        </div>
+      </div>
+    </section>
+  <section class="edu glass reveal" aria-label="Education ledger">
+      <p class="k">Education Ledger</p>
+      <div class="tw"><table class="vt">
+        <thead><tr><th>Level</th><th>Institute</th><th>Year</th><th>Score</th></tr></thead>
+        <tbody>
+          <tr style="--i:0"><td>B.Tech CSE</td><td>IIIT Raichur</td><td>Current</td><td><em class="live">Ongoing</em></td></tr>
+          <tr style="--i:1"><td>Class XII</td><td>Board</td><td>2025–26</td><td>85%<span class="meter"><i style="--p:85%"></i></span></td></tr>
+          <tr style="--i:2"><td>Class X</td><td>Board</td><td>2023–24</td><td>93%<span class="meter"><i style="--p:93%"></i></span></td></tr>
+          <tr style="--i:3"><td>JEE Main</td><td>NTA</td><td>2026</td><td>95.1 %ile<span class="meter"><i style="--p:95.1%"></i></span></td></tr>
+        </tbody>
+      </table></div>
+    </section>
+  </main>
+
+  <a class="portal" href="chamber-2.html">
+    <span class="arch" aria-hidden="true"></span>
+    <span class="ptxt"><small>Chamber II unlocked</small><b>Enter the Logic Forge</b></span>
+    <span class="arrow" aria-hidden="true">▸</span>
+  </a>
+
+  <div class="shock" aria-hidden="true"></div>
+
+  <section class="loss" aria-live="assertive">
+    <div class="loss-box">
+      <p class="eyebrow">The doors have met</p>
+      <h2>TIMELINE SEALED<br><span>RELIC LOST</span></h2>
+      <p>Thirty seconds passed before the astrolabe was aligned.</p>
+      <a class="rewind" href="chamber-1.html">⟲ Rewind time</a>
+    </div>
+  </section>
+</div>
+</body>
+</html>

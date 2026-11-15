@@ -1,0 +1,137 @@
+/* Chamber I — The Astrolabe of Origin */
+.p1 .scene{--P:min(94vw,560px);--A:calc(var(--P)*.8);position:relative;width:var(--P);height:var(--A);margin-top:clamp(6px,1.4vh,14px)}
+
+/* ---- the astrolabe lock ---- */
+.astro{position:absolute;inset:0;margin:auto;width:var(--A);height:var(--A);perspective:1200px;transform-style:preserve-3d;z-index:2}
+.mark{position:absolute;left:50%;top:-14px;z-index:5;width:0;height:0;margin-left:-11px;border:11px solid transparent;border-bottom-color:var(--gold2);filter:drop-shadow(0 0 8px var(--gold))}
+.ring{position:absolute;border-radius:50%;cursor:pointer;pointer-events:none;--from:40deg;
+  animation:ringSpin 16s linear infinite;filter:drop-shadow(0 0 10px rgba(255,183,3,.4))}
+.ring1{inset:0;pointer-events:auto}
+.ring2{inset:15%;--from:-70deg;animation:ringSpinRev 11s linear infinite}
+.ring3{inset:30%;--from:130deg;animation-duration:8s}
+.ring::before{content:"";position:absolute;inset:0;border-radius:50%;
+  background:
+    repeating-conic-gradient(from 0deg,rgba(11,10,14,.8) 0 1.2deg,transparent 1.2deg 7.5deg),
+    conic-gradient(from 0deg,#ffd166,#b57c1e,#ffe9a6,#b57c1e,#ffd166);
+  -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 11%),#000 calc(100% - 11%));
+  mask:radial-gradient(farthest-side,transparent calc(100% - 11%),#000 calc(100% - 11%))}
+.ring::after{content:"";position:absolute;left:50%;top:1%;width:0;height:0;margin-left:-8px;border:8px solid transparent;border-top-color:var(--mag);filter:drop-shadow(0 0 6px var(--mag))}
+.core{position:absolute;left:50%;top:50%;width:14%;height:14%;margin:-7% 0 0 -7%;border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#fff4c9,#FFB703 55%,#6b4300);animation:glowPulse 2s ease-in-out infinite}
+@keyframes ringSpin{to{transform:rotate(360deg)}}
+@keyframes ringSpinRev{to{transform:rotate(-360deg)}}
+@keyframes snap{from{transform:rotate(var(--from))}to{transform:rotate(0)}}
+
+/* sequential lock gating: outer -> middle -> inner */
+#r1:checked~.stage .ring1{animation:snap .9s cubic-bezier(.2,1.5,.4,1) forwards;pointer-events:none}
+#r1:checked~.stage .ring2{pointer-events:auto}
+#r2:checked~.stage .ring2{animation:snap .9s cubic-bezier(.2,1.5,.4,1) forwards;pointer-events:none}
+#r2:checked~.stage .ring3{pointer-events:auto}
+#r3:checked~.stage .ring3{animation:snap .9s cubic-bezier(.2,1.5,.4,1) forwards;pointer-events:none}
+#r1:checked~.stage .ring1::after,
+#r2:checked~.stage .ring2::after,
+#r3:checked~.stage .ring3::after{border-top-color:var(--em);filter:drop-shadow(0 0 8px var(--em))}
+
+.lamps{display:flex;gap:12px;margin-top:6px}
+.lamps i{width:14px;height:14px;border-radius:50%;border:1.5px solid var(--bronze2);background:transparent}
+#r1:checked~.stage .l1,#r2:checked~.stage .l2,#r3:checked~.stage .l3{background:var(--em);border-color:var(--em);box-shadow:0 0 12px var(--em)}
+
+/* ---- the orrery (2D elliptical orbits: no 3D clipping, light on phones) ---- */
+.orrery{position:absolute;inset:0;z-index:1}
+.plane{position:absolute;left:50%;top:50%;width:var(--P);height:calc(var(--P)*.62);margin:calc(var(--P)*-.31) 0 0 calc(var(--P)/-2)}
+.halo{position:absolute;left:50%;top:50%;width:40%;height:40%;margin:-20% 0 0 -20%;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,183,3,.45),rgba(255,183,3,0) 68%)}
+.orbit{position:absolute;left:50%;top:50%;width:var(--w);height:calc(var(--w)*.5);margin:calc(var(--w)/-4) 0 0 calc(var(--w)/-2);
+  border-radius:50%;border:1.5px dashed rgba(255,209,102,.55);--rx:calc(var(--w)/2);--ry:calc(var(--w)/4);
+  box-shadow:0 0 18px rgba(255,183,3,.12),inset 0 0 18px rgba(255,183,3,.08)}
+.ob1{--w:calc(var(--P)*.46);--D:15s;--ph:0s}
+.ob2{--w:calc(var(--P)*.72);--D:22s;--ph:7s}
+.ob3{--w:calc(var(--P)*.98);--D:30s;--ph:16s}
+.ox{position:absolute;left:50%;top:50%;width:0;height:0;
+  animation:ox var(--D) cubic-bezier(.37,0,.63,1) infinite alternate,oz var(--D) linear infinite alternate;
+  animation-delay:calc(var(--ph)*-1),calc(var(--ph)*-1 - var(--D)/2)}
+.oy{position:absolute;left:0;top:0;width:0;height:0;
+  animation:oy var(--D) cubic-bezier(.37,0,.63,1) infinite alternate;animation-delay:calc(var(--ph)*-1 - var(--D)/2)}
+@keyframes ox{from{transform:translateX(calc(var(--rx)*-1))}to{transform:translateX(var(--rx))}}
+@keyframes oy{from{transform:translateY(calc(var(--ry)*-1)) scale(.8)}to{transform:translateY(var(--ry)) scale(1.2)}}
+@keyframes oz{from{z-index:0}to{z-index:4}}
+.planet{--ps:clamp(44px,12vw,64px);position:absolute;left:calc(var(--ps)/-2);top:calc(var(--ps)/-2);width:var(--ps);height:var(--ps);
+  display:grid;place-items:center;border-radius:50%;
+  background:radial-gradient(circle at 32% 28%,#fff4c9,#FFD166 34%,#FFB703 60%,#8a5a0e);
+  box-shadow:0 0 22px rgba(255,183,3,.75),inset -6px -8px 14px rgba(80,40,0,.5);
+  color:#2a1800;font-family:var(--disp);font-weight:800;font-size:calc(var(--ps)*.34)}
+.pl2{background:radial-gradient(circle at 32% 28%,#d8fff0,#06D6A0 36%,#04856a 66%,#02382c);box-shadow:0 0 22px rgba(6,214,160,.7),inset -6px -8px 14px rgba(0,40,30,.5);color:#012a20}
+.pl3{background:radial-gradient(circle at 32% 28%,#fff0f3,#ff8fa7 36%,#EF476F 64%,#6a1328);box-shadow:0 0 22px rgba(239,71,111,.65),inset -6px -8px 14px rgba(60,0,15,.5);color:#2a0610}
+.sun{--ss:clamp(58px,17vw,92px);position:absolute;left:50%;top:50%;z-index:2;width:var(--ss);height:var(--ss);margin:calc(var(--ss)/-2) 0 0 calc(var(--ss)/-2);
+  display:grid;place-items:center;border-radius:50%;
+  background:radial-gradient(circle at 34% 30%,#fffbe6,#FFD166 30%,#FFB703 58%,#a8650a);
+  box-shadow:0 0 50px 10px rgba(255,183,3,.55),inset -8px -10px 20px rgba(120,60,0,.45);
+  color:#2a1800;font-family:var(--disp);font-weight:800;font-size:calc(var(--ss)*.34);animation:sunPulse 3s ease-in-out infinite}
+@keyframes sunPulse{50%{box-shadow:0 0 80px 22px rgba(255,183,3,.8),inset -8px -10px 20px rgba(120,60,0,.45)}}
+.planet b,.sun b{pointer-events:none}
+
+/* pause the orbit while inspecting (hover) or after selecting (tap) */
+.plane:has(.planet:hover) .ox,.plane:has(.planet:hover) .oy,
+.vault:has(.in-o1:checked,.in-o2:checked,.in-o3:checked) .orrery .ox,
+.vault:has(.in-o1:checked,.in-o2:checked,.in-o3:checked) .orrery .oy{animation-play-state:paused}
+.vault:has(.in-o1:checked) .pl1,.vault:has(.in-o2:checked) .pl2,.vault:has(.in-o3:checked) .pl3{outline:3px solid #fff3c4;outline-offset:4px}
+.planet:hover,.sun:hover{outline:2px solid rgba(255,243,196,.8);outline-offset:3px}
+
+/* ---- inspection lens (readout) ---- */
+.lens{width:min(94vw,560px);min-height:150px;margin-top:clamp(6px,1.5vh,14px);padding:18px 20px 14px;text-align:center}
+.lens .info{display:none}
+.lens .k{font-family:var(--disp);letter-spacing:.22em;text-transform:uppercase;font-size:clamp(10px,2.9vw,12px);color:var(--em)}
+.lens h2{font-family:var(--disp);font-weight:800;font-size:clamp(18px,5.4vw,28px);line-height:1.15;margin:.3em 0 .15em;
+  background:linear-gradient(180deg,#fff2c4,#FFD166 55%,#d9a24a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lens .v{font-size:clamp(15px,4.2vw,19px);color:#e9dcb8;font-weight:600}
+.lens .hint{margin-top:12px;font-size:12.5px;color:#9b8c68;letter-spacing:.03em}
+
+.vault:has(.in-oS:checked) .lens .iS,
+.vault:has(.in-o1:checked) .lens .i1,
+.vault:has(.in-o2:checked) .lens .i2,
+.vault:has(.in-o3:checked) .lens .i3{display:block}
+.vault:has(.hv:hover) .lens .info{display:none}
+.vault:has(.pls:hover) .lens .info.iS,
+.vault:has(.pl1:hover) .lens .info.i1,
+.vault:has(.pl2:hover) .lens .info.i2,
+.vault:has(.pl3:hover) .lens .info.i3{display:block}
+
+@media (max-width:420px){
+  .lens{padding:14px 14px 12px}
+  .mark{top:-12px}
+}
+
+
+.sunimg{position:absolute;inset:0;width:100%;height:100%;border-radius:50%;object-fit:cover;pointer-events:none}
+.lens .tel{color:var(--gold2);border-bottom:1px dashed rgba(255,209,102,.6)}
+.edu{width:min(94vw,560px);margin-top:clamp(10px,2vw,18px);padding:16px 18px}
+.edu .k{font-family:var(--disp);letter-spacing:.22em;text-transform:uppercase;font-size:11px;color:var(--em);text-align:center;margin-bottom:10px}
+
+/* ---- portrait relic (revealed after the astrolabe is aligned) ---- */
+.portrait{width:100%;margin-top:clamp(18px,4vw,30px)}
+.pt-wrap{display:flex;flex-direction:column;align-items:center;gap:22px}
+.pt-frame{--w:min(66vw,260px);position:relative;width:var(--w);aspect-ratio:4/5;padding:10px;
+  border-radius:calc(var(--w)/2) calc(var(--w)/2) 18px 18px;background:var(--goldgrad);
+  box-shadow:0 0 56px rgba(255,183,3,.4),0 24px 50px rgba(0,0,0,.6);animation:float 6s ease-in-out infinite}
+.pt-orbit{position:absolute;inset:-14px;border-radius:calc(var(--w)/2 + 14px) calc(var(--w)/2 + 14px) 30px 30px;
+  border:2px dashed rgba(255,209,102,.65);box-shadow:0 0 26px rgba(255,183,3,.35);animation:ptPulse 3.4s ease-in-out infinite}
+@keyframes ptPulse{50%{transform:scale(1.035);opacity:.55}}
+.pt-arch{position:relative;width:100%;height:100%;overflow:hidden;display:grid;place-items:center;
+  border-radius:calc(var(--w)/2 - 10px) calc(var(--w)/2 - 10px) 10px 10px;border:3px solid #16131D;
+  background:radial-gradient(circle at 50% 30%,#2b2433,#0B0A0E 80%)}
+.pt-mono{font-family:var(--disp);font-weight:800;font-size:calc(var(--w)*.3);color:rgba(255,209,102,.35);letter-spacing:.06em}
+.pt-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+.pt-shine{position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 40%,rgba(255,243,196,.22) 50%,transparent 60%);
+  transform:translateX(-120%);animation:ptShine 5s ease-in-out 1.5s infinite}
+@keyframes ptShine{55%,100%{transform:translateX(120%)}}
+.pt-gem{position:absolute;bottom:-9px;width:17px;height:17px;transform:rotate(45deg);border:2px solid #fff3c4;
+  background:radial-gradient(circle at 35% 30%,#d8fff0,#06D6A0 60%,#04644d);box-shadow:0 0 14px var(--em)}
+.pt-gem.g1{left:16%}.pt-gem.g2{right:16%}
+.pt-plate{width:min(94vw,360px);padding:14px 18px;text-align:center}
+.pt-plate .k{font-family:var(--disp);letter-spacing:.22em;text-transform:uppercase;font-size:11px;color:var(--em)}
+.pt-plate h2{font-family:var(--disp);font-weight:800;font-size:clamp(20px,6vw,28px);margin:.25em 0 .1em;
+  background:linear-gradient(180deg,#fff2c4,#FFD166 55%,#d9a24a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.pt-plate .v{color:#e9dcb8;font-weight:600;font-size:clamp(14px,3.8vw,16px)}
+
+/* stylish SJ monogram on the sun */
+.sun b{font-size:calc(var(--ss)*.44);font-style:italic;letter-spacing:.02em;color:#2a1800;text-shadow:0 1px 0 rgba(255,244,201,.8),0 0 14px rgba(255,255,255,.55)}

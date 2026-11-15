@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B0A0E">
+<title>Chamber II · The Logic Forge — Sarvesh Jaat</title>
+<meta name="description" content="Chamber II of Sarvesh Jaat's portfolio: skills in Python, C, HTML, Linux and the command line, plus AI/ML and leadership. Route the gold to open the forge.">
+<link rel="canonical" href="https://sj-portfolio-inky.vercel.app/chamber-2.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Chrono-Relic Vault">
+<meta property="og:title" content="Chamber II · The Logic Forge — Sarvesh Jaat">
+<meta property="og:description" content="Chamber II of Sarvesh Jaat's portfolio: skills in Python, C, HTML, Linux and the command line, plus AI/ML and leadership. Route the gold to open the forge.">
+<meta property="og:url" content="https://sj-portfolio-inky.vercel.app/chamber-2.html">
+<meta property="og:image" content="https://sj-portfolio-inky.vercel.app/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Sarvesh Jaat, B.Tech CSE student at IIIT Raichur">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Chamber II · The Logic Forge — Sarvesh Jaat">
+<meta name="twitter:description" content="Chamber II of Sarvesh Jaat's portfolio: skills in Python, C, HTML, Linux and the command line, plus AI/ML and leadership. Route the gold to open the forge.">
+<meta name="twitter:image" content="https://sj-portfolio-inky.vercel.app/og-image.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&amp;family=Rajdhani:wght@500;600;700&amp;display=swap">
+<link rel="stylesheet" href="vault.css">
+<link rel="stylesheet" href="p2.css">
+</head>
+<body>
+<div class="vault p2" id="vault">
+
+  <!-- order matters: s0, s1, en are adjacent siblings for the routing selectors -->
+  <input type="checkbox" id="s0" class="in-s0">
+  <input type="checkbox" id="s1" class="in-s1">
+  <input type="checkbox" id="en" class="in-en">
+  <input type="checkbox" id="pour" class="puzzle-lock in-pour">
+
+  <div class="dust" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <div class="hud">
+    <span class="chip">Chamber II / V</span>
+    <span class="pips" aria-hidden="true"><i class="done"></i><i class="on"></i><i></i><i></i><i></i></span>
+    <span class="clock"><span class="state-run">Seals in <b class="count"></b>s</span><span class="state-ok">Seal broken</span></span>
+    <div class="hourglass" aria-hidden="true"><i></i></div>
+  </div>
+
+  <div class="door-wrap top" aria-hidden="true"><div class="door"></div></div>
+  <div class="door-wrap bot" aria-hidden="true"><div class="door"></div></div>
+
+  <main class="stage">
+    <header class="head">
+      <p class="eyebrow">The Chrono-Relic Vault · Chamber II</p>
+      <h1>The Logic Forge</h1>
+      <p class="sub">Tech Stack &amp; Skills</p>
+      <p class="mission"><span class="m-run">Route the gold down channel D2 into the forge, then pour</span><span class="m-done">Four ingots cast — hover or tap one to turn it</span></p>
+    </header>
+
+    <!-- LOCK: 4-to-1 multiplexer -->
+    <section class="circuit-zone glass collapse">
+      <svg class="mux" viewBox="0 0 360 270" role="img" aria-label="4 to 1 multiplexer circuit routing into the forge">
+        <defs>
+          <radialGradient id="forgeG" cx="50%" cy="40%" r="65%">
+            <stop offset="0" stop-color="#fff4c9"/><stop offset=".5" stop-color="#FFB703"/><stop offset="1" stop-color="#6b4300"/>
+          </radialGradient>
+        </defs>
+        <g class="rails">
+          <path class="ch ch0" d="M26 55 H140"/>
+          <path class="ch ch1" d="M26 105 H140"/>
+          <path class="ch ch2" d="M26 155 H140"/>
+          <path class="ch ch3" d="M26 205 H140"/>
+        </g>
+        <polygon class="mux-body" points="140,20 220,80 220,190 140,250"/>
+        <path class="outp" d="M220 135 H292"/>
+        <circle class="forge" cx="322" cy="135" r="30"/>
+        <g class="lbl">
+          <text x="26" y="45">D0</text><text x="26" y="95">D1</text><text x="26" y="145" class="tgt">D2</text><text x="26" y="195">D3</text>
+          <text x="148" y="59" class="code">00</text><text x="148" y="109" class="code">01</text><text x="148" y="159" class="code">10</text><text x="148" y="209" class="code">11</text>
+          <text x="196" y="138" class="muxt" text-anchor="middle">4:1</text>
+          <text x="322" y="139" class="fgt" text-anchor="middle">FORGE</text>
+        </g>
+      </svg>
+
+      <p class="route"><span class="msg msg-off">ENABLE OFF — NO FLOW</span><span class="msg msg-bad">IMPURE ALLOY — WRONG CHANNEL</span><span class="msg msg-ok">PURE FLOW ON D2 — READY TO POUR</span></p>
+      <p class="rule">Forge accepts <b>D2</b> only · channel = <b>S1 S0</b> in binary · so <b>S1=1, S0=0, Enable=1</b></p>
+
+      <div class="switches">
+        <div class="sw sw-s0"><b>S0</b><label class="tog" for="s0" aria-label="Toggle S0"><span class="knob"></span></label><em class="val"></em></div>
+        <div class="sw sw-s1"><b>S1</b><label class="tog" for="s1" aria-label="Toggle S1"><span class="knob"></span></label><em class="val"></em></div>
+        <div class="sw sw-en"><b>Enable</b><label class="tog" for="en" aria-label="Toggle Enable"><span class="knob"></span></label><em class="val"></em></div>
+      </div>
+
+      <label class="pour-lbl" for="pour">⚒ Pour the molten gold</label>
+    </section>
+
+    <!-- REVEAL: skill ingots + table -->
+    <section class="ingots reveal" aria-label="Skill ingots">
+      <div class="ingot">
+        <span class="aura" aria-hidden="true"></span><span class="floor" aria-hidden="true"></span><span class="spk" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <input type="checkbox" id="g1" class="g-in">
+        <label class="ing" for="g1" aria-label="Ingot 1 – Programming">
+          <span class="cube">
+            <span class="face top"></span><span class="face bottom"></span>
+            <span class="face f0"><i>I</i><h3>Programming</h3><small>turn me</small></span>
+            <span class="face f1"><h3>Python</h3><p>Primary language</p></span><span class="face f2"><h3>C</h3><p>Systems fundamentals</p></span><span class="face f3"><h3>HTML &amp; Web</h3><p>Basic web development</p></span>
+          </span>
+        </label>
+      </div>
+      <div class="ingot">
+        <span class="aura" aria-hidden="true"></span><span class="floor" aria-hidden="true"></span><span class="spk" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <input type="checkbox" id="g2" class="g-in">
+        <label class="ing" for="g2" aria-label="Ingot 2 – Linux &amp; CLI">
+          <span class="cube">
+            <span class="face top"></span><span class="face bottom"></span>
+            <span class="face f0"><i>II</i><h3>Linux &amp; CLI</h3><small>turn me</small></span>
+            <span class="face f1"><h3>Ubuntu</h3><p>Linux environment</p></span><span class="face f2"><h3>Debian</h3><p>Linux environment</p></span><span class="face f3"><h3>Command Line</h3><p>Comfortable in the terminal</p></span>
+          </span>
+        </label>
+      </div>
+      <div class="ingot">
+        <span class="aura" aria-hidden="true"></span><span class="floor" aria-hidden="true"></span><span class="spk" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <input type="checkbox" id="g3" class="g-in">
+        <label class="ing" for="g3" aria-label="Ingot 3 – AI / ML">
+          <span class="cube">
+            <span class="face top"></span><span class="face bottom"></span>
+            <span class="face f0"><i>III</i><h3>AI / ML</h3><small>turn me</small></span>
+            <span class="face f1"><h3>Acoustic Signal Model</h3><p>Current project</p></span><span class="face f2"><h3>ML &amp; Deep Learning</h3><p>Ongoing course</p></span><span class="face f3"><h3>AI/ML Enthusiast</h3><p>Learning every day</p></span>
+          </span>
+        </label>
+      </div>
+      <div class="ingot">
+        <span class="aura" aria-hidden="true"></span><span class="floor" aria-hidden="true"></span><span class="spk" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <input type="checkbox" id="g4" class="g-in">
+        <label class="ing" for="g4" aria-label="Ingot 4 – Leadership &amp; Soft Skills">
+          <span class="cube">
+            <span class="face top"></span><span class="face bottom"></span>
+            <span class="face f0"><i>IV</i><h3>Leadership &amp; Soft Skills</h3><small>turn me</small></span>
+            <span class="face f1"><h3>Team Leadership</h3><p>Guiding teams to project goals</p></span><span class="face f2"><h3>Event Management</h3><p>Coordinating group efforts</p></span><span class="face f3"><h3>Time Management</h3><p>Balancing multiple tasks</p></span>
+          </span>
+        </label>
+      </div>
+    </section>
+
+    <section class="skilltbl glass reveal" aria-label="Skills table">
+      <p class="k">Skills Ledger</p>
+      <div class="tw"><table class="vt">
+        <thead><tr><th>Area</th><th>Skills</th></tr></thead>
+        <tbody>
+          <tr style="--i:0"><td>Programming</td><td><span class="tag" style="--j:0">Python</span><span class="tag" style="--j:1">C</span><span class="tag" style="--j:2">HTML &amp; basic web</span></td></tr>
+          <tr style="--i:1"><td>Environment</td><td><span class="tag" style="--j:0">Linux (Ubuntu/Debian)</span><span class="tag" style="--j:1">Command Line</span></td></tr>
+          <tr style="--i:2"><td>AI / ML</td><td><span class="tag" style="--j:0">Acoustic Signal Model</span><span class="tag" style="--j:1">ML &amp; DL course</span></td></tr>
+          <tr style="--i:3"><td>Leadership</td><td><span class="tag" style="--j:0">Managing Team · Deeplabs PR</span><span class="tag" style="--j:1">Team leadership</span></td></tr>
+          <tr style="--i:4"><td>Management</td><td><span class="tag" style="--j:0">Event management</span><span class="tag" style="--j:1">Time management</span></td></tr>
+        </tbody>
+      </table></div>
+    </section>
+  </main>
+
+  <a class="portal" href="chamber-3.html">
+    <span class="arch" aria-hidden="true"></span>
+    <span class="ptxt"><small>Chamber III unlocked</small><b>Ride the lift down</b></span>
+    <span class="arrow" aria-hidden="true">▸</span>
+  </a>
+
+  <div class="shock" aria-hidden="true"></div>
+
+  <section class="loss" aria-live="assertive">
+    <div class="loss-box">
+      <p class="eyebrow">The doors have met</p>
+      <h2>TIMELINE SEALED<br><span>RELIC LOST</span></h2>
+      <p>The forge went cold before the gold was routed.</p>
+      <a class="rewind" href="chamber-2.html">⟲ Rewind time</a>
+    </div>
+  </section>
+</div>
+</body>
+</html>
