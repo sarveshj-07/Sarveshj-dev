@@ -11,4 +11,4 @@ An interactive, puzzle-driven developer portfolio built around five chambers des
 
 ## 🛠️ Tech Stack
 - HTML5, CSS3
-- Hosted on Vercel[cite: 2]
+- Hosted on Vercel
